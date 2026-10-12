@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    background-color: #f7f6f1;
+    font-family: Arial, sans-serif;
+    color: #252525;
+}
+
+header {
+    text-align: center;
+    padding: 70px 20px 45px;
+}
+
+header h1 {
+    font-size: 52px;
+    margin-bottom: 12px;
+}
+
+header p {
+    font-size: 20px;
+    color: #555;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+}
+
+section {
+    padding: 50px 30px;
+}
+
+section h2 {
+    font-size: 32px;
+}
+
+#test-chart {
+    margin-top: 30px;
+}
