@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 620,
+  "height": 330,
+
+  "background": "#F4F1E8",
+
+  "data": {
+    "url": "data/state_group_counts.csv"
+  },
+
+  "mark": {
+    "type": "rect",
+    "stroke": "#F4F1E8",
+    "strokeWidth": 2
+  },
+
+  "encoding": {
+    "x": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Wildlife group",
+      "sort": [
+        "Bird",
+        "Mammal",
+        "Reptile",
+        "Amphibian"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "labelColor": "#27302A",
+        "titleColor": "#27302A"
+      }
+    },
+
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "New South Wales",
+        "Victoria",
+        "Queensland",
+        "Australian Capital Territory",
+        "South Australia",
+        "Western Australia",
+        "Tasmania",
+        "Northern Territory"
+      ],
+      "axis": {
+        "labelColor": "#27302A",
+        "labelFontSize": 12,
+        "labelLimit": 180
+      }
+    },
+
+    "color": {
+      "field": "observations",
+      "type": "quantitative",
+      "title": "Observations",
+      "scale": {
+        "type": "sqrt",
+        "range": [
+          "#E1E9DF",
+          "#B8CAB4",
+          "#88A884",
+          "#527858",
+          "#18392B"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "format": "~s",
+        "titleColor": "#27302A",
+        "labelColor": "#27302A"
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "group",
+        "type": "nominal",
+        "title": "Wildlife group"
+      },
+      {
+        "field": "observations",
+        "type": "quantitative",
+        "title": "Observations",
+        "format": ","
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

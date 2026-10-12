@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 600,
+  "height": 450,
+
+  "background": "#F4F1E8",
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/alwaysblazing/Australia-State-TopoJson-MapChart/master/au-states-topo.json",
+    "format": {
+      "type": "topojson",
+      "feature": "austates"
+    }
+  },
+
+  "transform": [
+    {
+      "calculate":
+        "datum.id == 0 ? 'New South Wales' : datum.id == 1 ? 'Victoria' : datum.id == 2 ? 'Queensland' : datum.id == 3 ? 'South Australia' : datum.id == 4 ? 'Western Australia' : datum.id == 5 ? 'Tasmania' : datum.id == 6 ? 'Northern Territory' : 'Unknown'",
+      "as": "state"
+    },
+
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "data/observations_by_state.csv"
+        },
+        "key": "state",
+        "fields": [
+          "observations"
+        ]
+      }
+    }
+  ],
+
+  "projection": {
+    "type": "mercator"
+  },
+
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#F4F1E8",
+    "strokeWidth": 2
+    },
+
+    "encoding": {
+    "color": {
+        "field": "observations",
+        "type": "quantitative",
+        "title": "Wildlife observations",
+        "scale": {
+        "type": "sqrt",
+        "range": [
+            "#C9D8C7",
+            "#A9C0A4",
+            "#7E9F7E",
+            "#4E7658",
+            "#18392B"
+        ]
+        },
+        "legend": {
+        "orient": "right",
+        "titleColor": "#27302A",
+        "labelColor": "#27302A",
+        "format": "~s"
+        }
+    },
+
+    "tooltip": [
+        {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+        },
+        {
+        "field": "observations",
+        "type": "quantitative",
+        "title": "Observations",
+        "format": ","
+        }
+    ]
+    }
+}

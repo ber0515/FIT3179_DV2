@@ -1,55 +1,65 @@
-const testChart = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-
-    "description": "Test wildlife observation chart",
-
-    "width": 600,
-    "height": 350,
-
-    "data": {
-        "values": [
-            {"species": "Kangaroo", "observations": 120},
-            {"species": "Koala", "observations": 75},
-            {"species": "Wombat", "observations": 55},
-            {"species": "Echidna", "observations": 40},
-            {"species": "Platypus", "observations": 30}
-        ]
-    },
-
-    "mark": {
-        "type": "bar",
-        "cornerRadiusEnd": 5
-    },
-
-    "encoding": {
-
-        "x": {
-            "field": "species",
-            "type": "nominal",
-            "title": "Species"
-        },
-
-        "y": {
-            "field": "observations",
-            "type": "quantitative",
-            "title": "Number of observations"
-        },
-
-        "tooltip": [
-            {
-                "field": "species",
-                "type": "nominal",
-                "title": "Species"
-            },
-            {
-                "field": "observations",
-                "type": "quantitative",
-                "title": "Observations"
-            }
-        ]
+vegaEmbed(
+    "#map-state-observations",
+    "charts/map_state_observations.vg.json",
+    {
+        actions: false
     }
-};
+).catch(console.error);
 
-vegaEmbed("#test-chart", testChart, {
-    actions: false
-});
+
+vegaEmbed(
+    "#species-lollipop",
+    "charts/species_lollipop.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+
+vegaEmbed(
+    "#group-donut",
+    "charts/group_donut.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#state-group-heatmap",
+    "charts/state_group_heatmap.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#monthly-trend",
+    "charts/monthly_trend.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#month-group-heatmap",
+    "charts/month_group_heatmap.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#species-slope",
+    "charts/species_slope.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#capad-bubble",
+    "charts/capad_bubble.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);

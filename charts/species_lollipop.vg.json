@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 620,
+  "height": 360,
+
+  "background": "#F4F1E8",
+
+  "data": {
+    "url": "data/observations_by_species.csv"
+  },
+
+  "transform": [
+    {
+      "filter": "datum.observations > 0"
+    }
+  ],
+
+  "encoding": {
+    "y": {
+      "field": "common_name",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {
+        "labelColor": "#27302A",
+        "labelFontSize": 12,
+        "labelLimit": 220
+      }
+    },
+
+    "x": {
+      "field": "observations",
+      "type": "quantitative",
+      "title": "Number of observations",
+      "axis": {
+        "format": "~s",
+        "titleColor": "#27302A",
+        "labelColor": "#5F6F63",
+        "gridColor": "#DDD5C4"
+      }
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#A9C0A4"
+      },
+
+      "encoding": {
+        "x": {
+          "datum": 0
+        },
+
+        "x2": {
+          "field": "observations"
+        }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 150,
+        "color": "#2F5D46"
+      },
+
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "common_name",
+            "type": "nominal",
+            "title": "Species"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Group"
+          },
+          {
+            "field": "observations",
+            "type": "quantitative",
+            "title": "Observations",
+            "format": ","
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 11,
+        "color": "#27302A"
+      },
+
+      "encoding": {
+        "text": {
+          "field": "observations",
+          "type": "quantitative",
+          "format": "~s"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

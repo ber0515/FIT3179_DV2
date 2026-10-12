@@ -1,0 +1,96 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 620,
+  "height": 320,
+
+  "background": "#F4F1E8",
+
+  "data": {
+    "url": "data/month_group_counts.csv"
+  },
+
+  "transform": [
+    {
+        "aggregate": [
+        {
+            "op": "sum",
+            "field": "observations",
+            "as": "total_observations"
+        }
+        ],
+        "groupby": ["month"]
+    }
+    ],
+
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 80
+    },
+    "strokeWidth": 3,
+    "color": "#2F5D46"
+  },
+
+  "encoding": {
+    "x": {
+    "field": "month",
+    "type": "ordinal",
+    "sort": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ],
+    "title": "Month",
+    "axis": {
+        "labelExpr": "substring(datum.label, 0, 3)",
+        "labelAngle": 0,
+        "labelColor": "#27302A",
+        "titleColor": "#27302A",
+        "titlePadding": 10
+    }
+    },
+
+    "y": {
+      "field": "total_observations",
+      "type": "quantitative",
+      "title": "Observations",
+      "axis": {
+        "format": "~s",
+        "titleColor": "#27302A",
+        "labelColor": "#5F6F63",
+        "gridColor": "#DDD5C4"
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "month_name",
+        "type": "nominal",
+        "title": "Month"
+      },
+      {
+        "field": "total_observations",
+        "type": "quantitative",
+        "title": "Observations",
+        "format": ","
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

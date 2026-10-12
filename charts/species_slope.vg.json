@@ -1,0 +1,158 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 620,
+  "height": 380,
+
+  "background": "#F4F1E8",
+
+  "data": {
+    "url": "data/year_species_counts.csv"
+  },
+
+  "transform": [
+    {
+      "filter": "datum.year == 2021 || datum.year == 2025"
+    },
+    {
+      "filter": "datum.observations > 0"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2,
+        "opacity": 0.75
+      },
+
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": [2021, 2025],
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 13,
+            "labelColor": "#27302A",
+            "titleColor": "#27302A"
+          }
+        },
+
+        "y": {
+          "field": "observations",
+          "type": "quantitative",
+          "title": "Observations",
+          "axis": {
+            "format": "~s",
+            "labelColor": "#5F6F63",
+            "titleColor": "#27302A",
+            "gridColor": "#DDD5C4"
+          }
+        },
+
+        "detail": {
+          "field": "common_name"
+        },
+
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": "Wildlife group",
+          "scale": {
+            "domain": [
+              "Bird",
+              "Mammal",
+              "Reptile",
+              "Amphibian"
+            ],
+            "range": [
+              "#18392B",
+              "#527858",
+              "#89A986",
+              "#BFD0BB"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "labelColor": "#27302A",
+            "titleColor": "#27302A"
+          }
+        }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 90
+      },
+
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": ["2021", "2025"]
+        },
+
+        "y": {
+          "field": "observations",
+          "type": "quantitative"
+        },
+
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Bird",
+              "Mammal",
+              "Reptile",
+              "Amphibian"
+            ],
+            "range": [
+              "#18392B",
+              "#527858",
+              "#89A986",
+              "#BFD0BB"
+            ]
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "common_name",
+            "type": "nominal",
+            "title": "Species"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Group"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "observations",
+            "type": "quantitative",
+            "title": "Observations",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

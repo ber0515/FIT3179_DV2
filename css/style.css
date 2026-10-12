@@ -1,38 +1,109 @@
 body {
     margin: 0;
-    background-color: #f7f6f1;
-    font-family: Arial, sans-serif;
-    color: #252525;
+    background-color: #F4F1E8;
+    color: #27302A;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* HERO */
 
 header {
     text-align: center;
-    padding: 70px 20px 45px;
+    padding: 90px 25px 80px;
+    background-color: #F4F1E8;
 }
 
 header h1 {
-    font-size: 52px;
-    margin-bottom: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+
+    font-size: 58px;
+    line-height: 1.05;
+
+    color: #18392B;
 }
 
 header p {
+    margin-top: 20px;
+
     font-size: 20px;
-    color: #555;
+
+    color: #5F6F63;
 }
 
-main {
-    max-width: 1100px;
-    margin: auto;
+
+/* SECTIONS */
+
+.section-dark {
+    background-color: #18392B;
+    color: #F4F1E8;
+
+    padding: 80px 25px;
 }
 
-section {
-    padding: 50px 30px;
+.section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
-section h2 {
-    font-size: 32px;
+.section-number {
+    margin: 0;
+
+    font-size: 13px;
+    letter-spacing: 3px;
+
+    color: #AFC7AC;
 }
 
-#test-chart {
-    margin-top: 30px;
+.section-dark h2 {
+    margin: 10px 0 16px;
+
+    font-size: 38px;
+}
+
+.section-intro {
+    max-width: 700px;
+
+    font-size: 18px;
+    line-height: 1.6;
+
+    color: #D7E0D5;
+}
+
+.dark-text {
+    color: #657268;
+}
+
+.section-light .section-intro {
+    color: #657268;
+}
+
+
+/* CHART CARDS */
+
+.chart-card {
+    margin: 35px auto 0;
+
+    max-width: 780px;
+
+    padding: 25px;
+
+    background-color: #F4F1E8;
+
+    border-radius: 14px;
+}
+
+footer {
+    background-color: #18392B;
+    color: #F4F1E8;
+    padding: 40px 30px;
+}
+
+.footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.6;
 }

@@ -1,0 +1,29 @@
+state,group,observations
+Australian Capital Territory,Amphibian,297
+Australian Capital Territory,Bird,60311
+Australian Capital Territory,Mammal,2465
+Australian Capital Territory,Reptile,495
+New South Wales,Amphibian,10901
+New South Wales,Bird,263945
+New South Wales,Mammal,280183
+New South Wales,Reptile,31595
+Northern Territory,Bird,2443
+Northern Territory,Reptile,32
+Queensland,Amphibian,1910
+Queensland,Bird,146275
+Queensland,Mammal,27540
+Queensland,Reptile,5031
+South Australia,Amphibian,3025
+South Australia,Bird,41538
+South Australia,Mammal,3713
+South Australia,Reptile,1541
+Tasmania,Amphibian,147
+Tasmania,Bird,12598
+Tasmania,Mammal,218
+Victoria,Amphibian,2954
+Victoria,Bird,256778
+Victoria,Mammal,13070
+Victoria,Reptile,2593
+Western Australia,Amphibian,1
+Western Australia,Bird,33286
+Western Australia,Reptile,16

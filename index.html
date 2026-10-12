@@ -7,6 +7,7 @@
 
     <title>Wildlife Observation in Australia</title>
 
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Vega libraries -->
@@ -15,30 +16,475 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
 </head>
 
+
 <body>
 
-    <header>
-        <h1>Wildlife Observation in Australia</h1>
+    <!-- =========================
+         HERO / INTRODUCTION
+    ========================== -->
 
-        <p>
-            Exploring where, when and what wildlife Australians observe.
-        </p>
+    <header class="hero">
+
+        <div class="hero-inner">
+
+            <p class="eyebrow">
+                FIT3179 · Data Visualisation 2
+            </p>
+
+            <h1>
+                Wildlife Observation
+                <span>in Australia</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Exploring where, when and what wildlife Australians observe.
+            </p>
+
+            <p class="hero-description">
+                From kangaroos and koalas to birds, reptiles and frogs,
+                wildlife observations reveal how encounters with Australian
+                animals vary across place and time.
+            </p>
+
+        </div>
+
     </header>
+
 
     <main>
 
-        <section>
-            <h2>Australia's Wildlife</h2>
 
-            <p>
-                This is our first test visualisation.
-            </p>
+        <!-- =========================
+             SECTION 01
+             STATE CHOROPLETH
+        ========================== -->
 
-            <div id="test-chart"></div>
+        <section class="section-dark">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number">
+                        01
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker">
+                            Geography
+                        </p>
+
+                        <h2>
+                            Where Wildlife Is Being Seen
+                        </h2>
+
+                        <p class="section-intro">
+                            Wildlife observations are not evenly distributed
+                            across Australia. Some states record considerably
+                            more sightings of the selected species than others.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <div id="map-state-observations"></div>
+
+                </div>
+
+
+                <p class="chart-note">
+                    Observation counts represent selected Australian wildlife
+                    species recorded between 2021 and 2025.
+                </p>
+
+            </div>
+
         </section>
+
+
+
+        <!-- =========================
+             SECTION 02
+             PLACEHOLDER
+        ========================== -->
+
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        02
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
+                            Species
+                        </p>
+
+                        <h2 class="dark-heading">
+                            Which Wildlife Is Seen Most Often?
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            Some species appear far more frequently in
+                            observation records than others.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <div id="species-lollipop"></div>
+
+                </div>
+
+                <p class="chart-note dark-text">
+                    Species with no returned observations in the current API-derived dataset
+                    are excluded from this comparison.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 03
+             PLACEHOLDER
+        ========================== -->
+
+        <section class="section-dark">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number">
+                        03
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker">
+                            Wildlife groups
+                        </p>
+
+                        <h2>
+                            Beyond Individual Species
+                        </h2>
+
+                        <p class="section-intro">
+                            Birds, mammals, reptiles and amphibians do not contribute equally
+                            to Australia's wildlife observation records.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <div id="group-donut"></div>
+
+                </div>
+
+                <p class="chart-note">
+                    Observation records are strongly concentrated in particular wildlife groups.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 04
+             PLACEHOLDER
+        ========================== -->
+
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        04
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
+                            State comparison
+                        </p>
+
+                        <h2 class="dark-heading">
+                            Every State Tells a Different Story
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            Wildlife groups are recorded at different levels
+                            across Australia's states and territories.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <div id="state-group-heatmap"></div>
+
+                </div>
+
+                <p class="chart-note dark-text">
+                    Darker cells indicate higher observation counts for each wildlife group within a state or territory.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 05
+             PLACEHOLDER
+        ========================== -->
+
+        <section class="section-dark">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number">
+                        05
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker">
+                            Time
+                        </p>
+
+                        <h2>
+                            Wildlife Has a Calendar
+                        </h2>
+
+                        <p class="section-intro">
+                            Observation activity changes throughout the year,
+                            revealing seasonal patterns in when wildlife is seen.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+                    <div id="monthly-trend"></div>
+                </div>
+
+                <p class="chart-note">
+                    Monthly totals combine observations across the selected wildlife groups.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 06
+             PLACEHOLDER
+        ========================== -->
+
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        06
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
+                            Seasonality
+                        </p>
+
+                        <h2 class="dark-heading">
+                            Different Wildlife, Different Seasons
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            Wildlife groups do not follow identical seasonal
+                            patterns, with some becoming more visible during
+                            particular months.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+                    <div id="month-group-heatmap"></div>
+                </div>
+
+                <p class="chart-note dark-text">
+                    Darker cells indicate months with higher observation activity for each wildlife group.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 07
+             PLACEHOLDER
+        ========================== -->
+
+        <section class="section-dark">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number">
+                        07
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker">
+                            Change
+                        </p>
+
+                        <h2>
+                            What Changed Over Five Years?
+                        </h2>
+
+                        <p class="section-intro">
+                            Comparing 2021 with 2025 shows which selected
+                            species became more or less frequently recorded.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+                    <div id="species-slope"></div>
+                </div>
+
+                <p class="chart-note">
+                    Each line connects a species' observation count in 2021 with its count in 2025.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 08
+             PLACEHOLDER
+        ========================== -->
+
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        08
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
+                            Conservation
+                        </p>
+
+                        <h2 class="dark-heading">
+                            Protection Looks Different Across Australia
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            A large protected area does not always mean a large share of a
+                            jurisdiction is protected. Comparing both measures reveals very
+                            different conservation profiles across Australia.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+                    <div id="capad-bubble"></div>
+                </div>
+
+                <p class="chart-note dark-text">
+                    Bubble size represents the number of terrestrial protected areas recorded in CAPAD 2024.
+                </p>
+            </div>
+
+        </section>
+
 
     </main>
 
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <p>
+                Data sources: Atlas of Living Australia and CAPAD 2024.
+            </p>
+
+            <p>
+                Created for FIT3179 Data Visualisation 2 · 2026
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Main JavaScript -->
     <script src="js/main.js"></script>
 
 </body>

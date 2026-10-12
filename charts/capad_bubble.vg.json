@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 620,
+  "height": 380,
+
+  "background": "#F4F1E8",
+
+  "data": {
+    "url": "data/capad_jurisdiction.csv"
+  },
+
+  "transform": [
+    {
+      "calculate": "datum.protected_area_ha / 1000000",
+      "as": "protected_area_mha"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "#F4F1E8",
+        "strokeWidth": 1.5
+      },
+
+      "encoding": {
+        "x": {
+          "field": "percent_protected",
+          "type": "quantitative",
+          "title": "Jurisdiction protected (%)",
+          "scale": {
+            "zero": true
+          },
+          "axis": {
+            "labelColor": "#27302A",
+            "titleColor": "#27302A",
+            "gridColor": "#DDD5C4"
+          }
+        },
+
+        "y": {
+          "field": "protected_area_mha",
+          "type": "quantitative",
+          "title": "Protected area (million ha)",
+          "axis": {
+            "labelColor": "#27302A",
+            "titleColor": "#27302A",
+            "gridColor": "#DDD5C4"
+          }
+        },
+
+        "size": {
+          "field": "protected_areas",
+          "type": "quantitative",
+          "title": "Number of protected areas",
+          "scale": {
+            "range": [150, 1700]
+          },
+          "legend": {
+            "title": "Number of protected areas",
+            "values": [1000, 2000, 3000, 4000],
+            "titleColor": "#27302A",
+            "labelColor": "#27302A"
+            }
+        },
+
+        "color": {
+          "value": "#2F5D46"
+        },
+
+        "tooltip": [
+          {
+            "field": "jurisdiction",
+            "type": "nominal",
+            "title": "Jurisdiction"
+          },
+          {
+            "field": "percent_protected",
+            "type": "quantitative",
+            "title": "Protected",
+            "format": ".1f"
+          },
+          {
+            "field": "protected_area_mha",
+            "type": "quantitative",
+            "title": "Protected area (million ha)",
+            "format": ".1f"
+          },
+          {
+            "field": "protected_areas",
+            "type": "quantitative",
+            "title": "Protected areas",
+            "format": ","
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "dx": 10,
+        "dy": -8,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#27302A"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "percent_protected",
+          "type": "quantitative"
+        },
+
+        "y": {
+          "field": "protected_area_mha",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "jurisdiction"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
