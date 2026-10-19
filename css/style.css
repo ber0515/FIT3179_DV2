@@ -1,20 +1,55 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    background-color: #F4F1E8;
-    color: #27302A;
+
+    background-color: #18392B;
+    color: #F4F1E8;
+
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
-/* HERO */
+/* =========================================
+   HERO
+========================================= */
 
-header {
+header,
+.hero {
     text-align: center;
-    padding: 90px 25px 80px;
+
+    padding: 90px 25px 85px;
+
     background-color: #F4F1E8;
+    color: #27302A;
 }
 
-header h1 {
+.hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    margin: 0 0 28px;
+
+    font-size: 15px;
+    letter-spacing: 1.5px;
+
+    color: #657268;
+}
+
+header h1,
+.hero h1 {
     max-width: 900px;
     margin: 0 auto;
 
@@ -24,86 +59,312 @@ header h1 {
     color: #18392B;
 }
 
-header p {
-    margin-top: 20px;
+header h1 span,
+.hero h1 span {
+    display: inline;
+}
 
-    font-size: 20px;
+.hero-subtitle {
+    margin: 28px auto 0;
 
-    color: #5F6F63;
+    font-size: 21px;
+    line-height: 1.5;
+    font-weight: 500;
+
+    color: #435449;
+}
+
+.hero-description {
+    max-width: 950px;
+
+    margin: 16px auto 0;
+
+    font-size: 17px;
+    line-height: 1.7;
+
+    color: #657268;
 }
 
 
-/* SECTIONS */
+/* =========================================
+   ALL MAIN SECTIONS
+========================================= */
 
-.section-dark {
+/*
+   IMPORTANT:
+   Both section-dark and section-light now have
+   exactly the same visual importance.
+*/
+
+.section-dark,
+.section-light {
     background-color: #18392B;
     color: #F4F1E8;
 
-    padding: 80px 25px;
+    padding: 85px 25px;
 }
 
+
+/* Keep content narrower than full screen */
+
 .section-inner {
-    max-width: 900px;
+    max-width: 960px;
+
     margin: 0 auto;
     padding: 0 30px;
 }
 
-.section-number {
-    margin: 0;
 
-    font-size: 13px;
+/* =========================================
+   SECTION HEADING STRUCTURE
+========================================= */
+
+.section-heading {
+    margin-bottom: 0;
+}
+
+
+/* 01, 02, 03... */
+
+.section-number,
+.section-number.dark-number {
+    margin: 0 0 18px;
+
+    font-size: 14px;
+    line-height: 1;
+
     letter-spacing: 3px;
 
     color: #AFC7AC;
 }
 
-.section-dark h2 {
-    margin: 10px 0 16px;
 
-    font-size: 38px;
+/* Geography / Species / Time etc. */
+
+.section-kicker,
+.section-kicker.dark-kicker {
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.4;
+
+    font-weight: 500;
+
+    color: #F4F1E8;
 }
 
-.section-intro {
-    max-width: 700px;
+
+/* Main section title */
+
+.section-dark h2,
+.section-light h2,
+.section-dark h2.dark-heading,
+.section-light h2.dark-heading {
+    margin: 12px 0 18px;
+
+    font-size: 38px;
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    color: #F4F1E8;
+}
+
+
+/* Section description */
+
+.section-intro,
+.section-light .section-intro,
+.section-intro.dark-text {
+    max-width: 720px;
+
+    margin: 0;
 
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.65;
 
     color: #D7E0D5;
 }
 
-.dark-text {
-    color: #657268;
-}
 
-.section-light .section-intro {
-    color: #657268;
-}
-
-
-/* CHART CARDS */
+/* =========================================
+   CHART CARDS
+========================================= */
 
 .chart-card {
-    margin: 35px auto 0;
+    width: 100%;
+    max-width: 840px;
 
-    max-width: 780px;
+    margin: 38px auto 0;
 
-    padding: 25px;
+    padding: 28px;
 
     background-color: #F4F1E8;
 
     border-radius: 14px;
 }
 
-footer {
-    background-color: #18392B;
+
+/* Center Vega visualisations inside card */
+
+.chart-card .vega-embed {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+
+/*
+   Prevent oversized SVGs from visually
+   breaking out of the card.
+*/
+
+.chart-card svg {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================
+   CHART NOTES
+========================================= */
+
+.chart-note,
+.chart-note.dark-text {
+    max-width: 840px;
+
+    margin: 16px auto 0;
+
+    font-size: 16px;
+    line-height: 1.6;
+
     color: #F4F1E8;
-    padding: 40px 30px;
+}
+
+
+/* =========================================
+   VEGA ELEMENTS
+========================================= */
+
+.vega-embed {
+    max-width: 100%;
+}
+
+.vega-embed-wrapper {
+    max-width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    background-color: #F4F1E8;
+    color: #27302A;
+
+    padding: 45px 30px;
 }
 
 .footer-inner {
-    max-width: 900px;
+    max-width: 960px;
+
     margin: 0 auto;
+
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+
+    header,
+    .hero {
+        padding: 70px 25px;
+    }
+
+    header h1,
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .section-dark,
+    .section-light {
+        padding: 70px 20px;
+    }
+
+    .section-inner {
+        padding: 0 15px;
+    }
+
+    .section-dark h2,
+    .section-light h2,
+    .section-dark h2.dark-heading,
+    .section-light h2.dark-heading {
+        font-size: 34px;
+    }
+
+    .chart-card {
+        padding: 22px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    header h1,
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-subtitle {
+        font-size: 19px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .section-dark,
+    .section-light {
+        padding: 60px 18px;
+    }
+
+    .section-inner {
+        padding: 0;
+    }
+
+    .section-dark h2,
+    .section-light h2,
+    .section-dark h2.dark-heading,
+    .section-light h2.dark-heading {
+        font-size: 30px;
+    }
+
+    .section-intro,
+    .section-light .section-intro,
+    .section-intro.dark-text {
+        font-size: 17px;
+    }
+
+    .chart-card {
+        padding: 16px;
+
+        border-radius: 10px;
+    }
+
+    .chart-note,
+    .chart-note.dark-text {
+        font-size: 15px;
+    }
 }
