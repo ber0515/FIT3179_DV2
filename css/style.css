@@ -90,12 +90,6 @@ header h1 span,
    ALL MAIN SECTIONS
 ========================================= */
 
-/*
-   IMPORTANT:
-   Both section-dark and section-light now have
-   exactly the same visual importance.
-*/
-
 .section-dark,
 .section-light {
     background-color: #18392B;
@@ -105,7 +99,7 @@ header h1 span,
 }
 
 
-/* Keep content narrower than full screen */
+/* Keep content narrower */
 
 .section-inner {
     max-width: 960px;
@@ -123,9 +117,6 @@ header h1 span,
     margin-bottom: 0;
 }
 
-
-/* 01, 02, 03... */
-
 .section-number,
 .section-number.dark-number {
     margin: 0 0 18px;
@@ -137,7 +128,6 @@ header h1 span,
 
     color: #AFC7AC;
 }
-
 
 /* Geography / Species / Time etc. */
 
