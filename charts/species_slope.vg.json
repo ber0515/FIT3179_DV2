@@ -1,61 +1,88 @@
 {
-
-  "width": 620,
-  "height": 380,
-
-  "background": "#F4F1E8",
-
+  "width": 700,
+  "height": 360,
+  "background": null,
   "data": {
     "url": "data/year_species_counts.csv"
   },
-
   "transform": [
     {
       "filter": "datum.year == 2021 || datum.year == 2025"
     },
     {
-      "filter": "datum.observations > 0"
+      "pivot": "year",
+      "value": "observations",
+      "groupby": [
+        "common_name",
+        "group"
+      ]
+    },
+    {
+      "filter": "isValid(datum['2021']) && isValid(datum['2025']) && datum['2021'] > 0"
+    },
+    {
+      "calculate": "datum['2021']",
+      "as": "obs_2021"
+    },
+    {
+      "calculate": "datum['2025']",
+      "as": "obs_2025"
+    },
+    {
+      "calculate": "((datum.obs_2025 - datum.obs_2021) / datum.obs_2021) * 100",
+      "as": "pct_change"
+    },
+    {
+      "calculate": "datum.obs_2025 - datum.obs_2021",
+      "as": "abs_change"
     }
   ],
-
   "layer": [
     {
       "mark": {
-        "type": "line",
-        "strokeWidth": 2,
-        "opacity": 0.75
+        "type": "rule",
+        "color": "#8F8A7D",
+        "strokeWidth": 1.5
       },
-
       "encoding": {
         "x": {
-          "field": "year",
-          "type": "ordinal",
-          "sort": [2021, 2025],
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3,
+        "size": 22
+      },
+      "encoding": {
+        "y": {
+          "field": "common_name",
+          "type": "nominal",
           "title": null,
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          },
           "axis": {
-            "labelAngle": 0,
-            "labelFontSize": 13,
             "labelColor": "#27302A",
-            "titleColor": "#27302A"
+            "labelFontSize": 12,
+            "labelLimit": 190
           }
         },
-
-        "y": {
-          "field": "observations",
+        "x": {
+          "field": "pct_change",
           "type": "quantitative",
-          "title": "Observations",
+          "title": "Change in observations from 2021 to 2025 (%)",
           "axis": {
-            "format": "~s",
+            "grid": true,
+            "gridColor": "#DDD5C4",
             "labelColor": "#5F6F63",
             "titleColor": "#27302A",
-            "gridColor": "#DDD5C4"
+            "labelExpr": "datum.value + '%'"
           }
         },
-
-        "detail": {
-          "field": "common_name"
-        },
-
         "color": {
           "field": "group",
           "type": "nominal",
@@ -68,10 +95,10 @@
               "Amphibian"
             ],
             "range": [
-              "#18392B",
-              "#527858",
-              "#89A986",
-              "#BFD0BB"
+              "#4F7EA8",
+              "#D96C4F",
+              "#718355",
+              "#4F8A7B"
             ]
           },
           "legend": {
@@ -79,49 +106,7 @@
             "labelColor": "#27302A",
             "titleColor": "#27302A"
           }
-        }
-      }
-    },
-
-    {
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 90
-      },
-
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal",
-          "sort": ["2021", "2025"]
         },
-
-        "y": {
-          "field": "observations",
-          "type": "quantitative"
-        },
-
-        "color": {
-          "field": "group",
-          "type": "nominal",
-          "legend": null,
-          "scale": {
-            "domain": [
-              "Bird",
-              "Mammal",
-              "Reptile",
-              "Amphibian"
-            ],
-            "range": [
-              "#18392B",
-              "#527858",
-              "#89A986",
-              "#BFD0BB"
-            ]
-          }
-        },
-
         "tooltip": [
           {
             "field": "common_name",
@@ -131,24 +116,66 @@
           {
             "field": "group",
             "type": "nominal",
-            "title": "Group"
+            "title": "Wildlife group"
           },
           {
-            "field": "year",
-            "type": "ordinal",
-            "title": "Year"
-          },
-          {
-            "field": "observations",
+            "field": "obs_2021",
             "type": "quantitative",
-            "title": "Observations",
+            "title": "2021 observations",
             "format": ","
+          },
+          {
+            "field": "obs_2025",
+            "type": "quantitative",
+            "title": "2025 observations",
+            "format": ","
+          },
+          {
+            "field": "abs_change",
+            "type": "quantitative",
+            "title": "Absolute change",
+            "format": "+,"
+          },
+          {
+            "field": "pct_change",
+            "type": "quantitative",
+            "title": "Percentage change",
+            "format": "+.1f"
           }
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#27302A"
+      },
+      "encoding": {
+        "y": {
+          "field": "common_name",
+          "type": "nominal",
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "format": "+.0f"
+        }
+      }
     }
   ],
-
   "config": {
     "view": {
       "stroke": null

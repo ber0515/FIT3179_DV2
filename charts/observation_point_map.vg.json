@@ -1,0 +1,192 @@
+{
+  "width": 600,
+  "height": 450,
+  "background": null,
+  "projection": {
+    "type": "mercator",
+    "scale": 630,
+    "center": [
+      136,
+      -28
+    ]
+  },
+  "params": [
+    {
+      "name": "WildlifeGroup",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Mammal",
+          "Bird",
+          "Reptile",
+          "Amphibian"
+        ],
+        "labels": [
+          "All wildlife",
+          "Mammals",
+          "Birds",
+          "Reptiles",
+          "Amphibians"
+        ],
+        "name": "Explore wildlife group: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/alwaysblazing/Australia-State-TopoJson-MapChart/master/au-states-topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "austates"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E2DDD2",
+        "stroke": "#B9B1A3",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/observation_points.csv"
+      },
+      "transform": [
+        {
+          "filter": "WildlifeGroup == 'All' || datum.group == WildlifeGroup"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 24,
+        "opacity": 0.48,
+        "stroke": "#F4F1E8",
+        "strokeWidth": 0.25
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Mammal",
+              "Bird",
+              "Reptile",
+              "Amphibian"
+            ],
+            "range": [
+              "#D96C4F",
+              "#4F7EA8",
+              "#718355",
+              "#4F8A7B"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "common_name",
+            "type": "nominal",
+            "title": "Species"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Wildlife group"
+          },
+          {
+            "field": "latitude",
+            "type": "quantitative",
+            "title": "Latitude",
+            "format": ".2f"
+          },
+          {
+            "field": "longitude",
+            "type": "quantitative",
+            "title": "Longitude",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "state": "WA",
+            "longitude": 121.5,
+            "latitude": -25.5
+          },
+          {
+            "state": "NT",
+            "longitude": 133.5,
+            "latitude": -19.5
+          },
+          {
+            "state": "SA",
+            "longitude": 135.0,
+            "latitude": -30.5
+          },
+          {
+            "state": "QLD",
+            "longitude": 144.5,
+            "latitude": -23.0
+          },
+          {
+            "state": "NSW",
+            "longitude": 147.0,
+            "latitude": -32.5
+          },
+          {
+            "state": "VIC",
+            "longitude": 144.5,
+            "latitude": -37.2
+          },
+          {
+            "state": "TAS",
+            "longitude": 146.5,
+            "latitude": -42.0
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "sans-serif",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#27302A",
+        "opacity": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

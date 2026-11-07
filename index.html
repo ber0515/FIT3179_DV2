@@ -9,11 +9,17 @@
 
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
 
     <!-- Vega libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+
+
 </head>
 
 
@@ -22,6 +28,7 @@
     <!-- =========================
          HERO / INTRODUCTION
     ========================== -->
+    
 
     <header class="hero">
 
@@ -37,18 +44,30 @@
             </h1>
 
             <p class="hero-subtitle">
-                Exploring where, when and what wildlife Australians observe.
+                What do Australia's wildlife records reveal?
             </p>
 
             <p class="hero-description">
-                From kangaroos and koalas to birds, reptiles and frogs,
-                wildlife observations reveal how encounters with Australian
-                animals vary across place and time.
+                Wildlife observation records reveal where, when and what Australians
+                encounter in the wild. But these records are not evenly distributed
+                across places, species or seasons.
+            </p>
+
+            <p class="hero-description">
+                This visualisation explores these patterns to show what wildlife records
+                can reveal — and why observation context matters when interpreting them.
             </p>
 
         </div>
 
     </header>
+
+    <div class="data-note-wrapper">
+        <div class="data-note">
+            <strong>About the data:</strong>
+            Observation records show where and when wildlife was reported, not direct estimates of animal population size. Patterns may also reflect recording effort and where people observe wildlife.
+        </div>
+    </div>
 
 
     <main>
@@ -75,23 +94,41 @@
                         </p>
 
                         <h2>
-                            Where Wildlife Is Being Seen
+                            Wildlife Observations Are Uneven Across Australia
                         </h2>
 
                         <p class="section-intro">
-                            Wildlife observations are not evenly distributed
-                            across Australia. Some states record considerably
-                            more sightings of the selected species than others.
+                            Observation records vary strongly by state and territory. New South Wales stands out with the highest total, while smaller or more remote jurisdictions record far fewer sightings.
                         </p>
 
                     </div>
 
                 </div>
 
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        New South Wales records the highest total, with 587,435 observations, substantially more than any other jurisdiction.
+                    </p>
+                </div>
 
-                <div class="chart-card">
+                <div class="chart-card map-card">
 
                     <div id="map-state-observations"></div>
+
+                    <!-- NSW CALLOUT -->
+                    <div class="nsw-callout">
+                        <strong>New South Wales</strong><br>
+                        Highest total:
+                        <strong>587,435 observations</strong>
+                    </div>
+
+                    <!-- NT CALLOUT -->
+                    <div class="nt-callout">
+                        <strong>Northern Territory</strong><br>
+                        Lowest total:
+                        <strong>2,475 observations</strong>
+                    </div>
 
                 </div>
 
@@ -106,11 +143,75 @@
         </section>
 
 
-
         <!-- =========================
              SECTION 02
         ========================== -->
 
+        <section class="section-dark">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number">
+                        02
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker">
+                            Observation locations
+                        </p>
+
+                        <h2>
+                            Where Do Wildlife Encounters Cluster?
+                        </h2>
+
+                        <p class="section-intro">
+                            Wildlife observation records are heavily concentrated along Australia’s eastern and south eastern regions. Use the wildlife group selector to explore how the distribution of mammals, birds, reptiles and amphibians differs across Australia.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Observation locations are concentrated along Australia’s eastern and south eastern coasts across wildlife groups, although the density and spread of records vary between mammals, birds, reptiles and amphibians. Inland Australia remains comparatively sparse.
+                    </p>
+                </div>
+
+
+                <div class="chart-card map-card point-map-card">
+
+                    <div id="observation-point-map"></div>
+
+                    <div class="map-callout east-coast-callout">
+                        <strong>Eastern Australia stands out</strong><br>
+                        Sampled observations cluster strongly along the east and south east coasts.
+                    </div>
+
+                    <div class="inland-callout">
+                        <strong>Inland Australia is sparse</strong><br>
+                        Far fewer sampled observations appear across the central interior.
+                    </div>
+
+                </div>
+
+                <p class="chart-note">
+                    Each point represents one sampled wildlife observation from 2021–2025. 
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECTION 03
+        ========================== -->
         <section class="section-light">
 
             <div class="section-inner">
@@ -118,7 +219,7 @@
                 <div class="section-heading">
 
                     <p class="section-number dark-number">
-                        02
+                        03
                     </p>
 
                     <div>
@@ -132,12 +233,18 @@
                         </h2>
 
                         <p class="section-intro dark-text">
-                            Some species appear far more frequently in
-                            observation records than others.
+                            Comparing total observations reveals which selected species dominate the wildlife record.
                         </p>
 
                     </div>
 
+                </div>
+                
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Australian Magpie is by far the most observed selected species at about 817k records, over three times the Koala total.                   
+                    </p>
                 </div>
 
 
@@ -147,71 +254,50 @@
 
                 </div>
 
-                <p class="chart-note dark-text">
-                    Species with no returned observations in the current API-derived dataset
-                    are excluded from this comparison.
-                </p>
+                <div class="species-highlight">
+                    <h3>Top observed species</h3>
 
-            </div>
+                    <div class="species-cards">
+                        <div class="species-card">
+                        <img src="images/australian-magpie.jpg" alt="Australian Magpie">
+                        <div class="species-card-text">
+                            <h4>Australian Magpie</h4>
+                            <p><strong>Group:</strong> Bird</p>
+                            <p><strong>Observations:</strong> 817,000+</p>
+                            <p>Most recorded species by a large margin.</p>
+                        </div>
+                        </div>
 
-        </section>
+                        <div class="species-card">
+                        <img src="images/koala.jpg" alt="Koala">
+                        <div class="species-card-text">
+                            <h4>Koala</h4>
+                            <p><strong>Group:</strong> Mammal</p>
+                            <p><strong>Observations:</strong> 232,000+</p>
+                            <p>Second highest observed species in the dataset.</p>
+                        </div>
+                        </div>
 
-
-
-        <!-- =========================
-             SECTION 03
-        ========================== -->
-
-        <section class="section-dark">
-
-            <div class="section-inner">
-
-                <div class="section-heading">
-
-                    <p class="section-number">
-                        03
-                    </p>
-
-                    <div>
-
-                        <p class="section-kicker">
-                            Wildlife groups
-                        </p>
-
-                        <h2>
-                            Beyond Individual Species
-                        </h2>
-
-                        <p class="section-intro">
-                            Birds, mammals, reptiles and amphibians do not contribute equally
-                            to Australia's wildlife observation records.
-                        </p>
-
+                        <div class="species-card">
+                        <img src="images/eastern-grey-kangaroo.jpg" alt="Eastern Grey Kangaroo">
+                        <div class="species-card-text">
+                            <h4>Eastern Grey Kangaroo</h4>
+                            <p><strong>Group:</strong> Mammal</p>
+                            <p><strong>Observations:</strong> 76,000+</p>
+                            <p>Ranks third, but far below the top two species.</p>
+                        </div>
+                        </div>
                     </div>
-
                 </div>
-
-
-                <div class="chart-card">
-
-                    <div id="group-donut"></div>
-
-                </div>
-
-                <p class="chart-note">
-                    Observation records are strongly concentrated in particular wildlife groups.
-                </p>
 
             </div>
 
         </section>
-
 
 
         <!-- =========================
              SECTION 04
         ========================== -->
-
         <section class="section-light">
 
             <div class="section-inner">
@@ -225,6 +311,57 @@
                     <div>
 
                         <p class="section-kicker dark-kicker">
+                            Concentration
+                        </p>
+
+                        <h2 class="dark-heading">
+                            A Few Species Dominate the Records
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            Ranking species by total observations shows whether wildlife records are broadly distributed across species or concentrated among only a few.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Australian Magpie alone contributes roughly two-thirds of all selected observations, while Australian Magpie and Koala together account for close to 90%. This shows that the observation records are highly concentrated among only a few species rather than being evenly distributed. Most of the remaining species contribute only a small share of the total, creating a clear long tail pattern.
+                    </p>
+                </div>
+
+
+                <div class="chart-card">
+                    <div id="species-concentration"></div>
+                </div>
+
+                <p class="chart-note dark-text">
+                    Bars show species observation counts, while the line shows the cumulative share of all selected observations.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+             SECTION 05
+        ========================== -->
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        05
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
                             State comparison
                         </p>
 
@@ -233,12 +370,18 @@
                         </h2>
 
                         <p class="section-intro dark-text">
-                            Wildlife groups are recorded at different levels
-                            across Australia's states and territories.
+                            States differ not only in how many wildlife observations they record, but also in which wildlife groups contribute most to those totals.
                         </p>
 
                     </div>
 
+                </div>
+
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Birds make up the largest share of observations in most states and territories. New South Wales stands out as the most balanced jurisdiction, where mammals account for 48% of observations and birds 45%, while several other jurisdictions are overwhelmingly dominated by bird records.
+                    </p>
                 </div>
 
 
@@ -249,67 +392,16 @@
                 </div>
 
                 <p class="chart-note dark-text">
-                    Darker cells indicate higher observation counts for each wildlife group within a state or territory.
+                    Darker cells indicate a larger share of observations within each state or territory. Each row sums to 100%, showing how bird, mammal, reptile and amphibian records contribute to that jurisdiction’s total.
                 </p>
 
             </div>
 
         </section>
-
-
-
-        <!-- =========================
-             SECTION 05
-        ========================== -->
-
-        <section class="section-dark">
-
-            <div class="section-inner">
-
-                <div class="section-heading">
-
-                    <p class="section-number">
-                        05
-                    </p>
-
-                    <div>
-
-                        <p class="section-kicker">
-                            Time
-                        </p>
-
-                        <h2>
-                            Wildlife Has a Calendar
-                        </h2>
-
-                        <p class="section-intro">
-                            Observation activity changes throughout the year,
-                            revealing seasonal patterns in when wildlife is seen.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="chart-card">
-                    <div id="monthly-trend"></div>
-                </div>
-
-                <p class="chart-note">
-                    Monthly totals combine observations across the selected wildlife groups.
-                </p>
-
-            </div>
-
-        </section>
-
-
 
         <!-- =========================
              SECTION 06
         ========================== -->
-
         <section class="section-light">
 
             <div class="section-inner">
@@ -323,30 +415,33 @@
                     <div>
 
                         <p class="section-kicker dark-kicker">
-                            Seasonality
+                            Composition
                         </p>
 
                         <h2 class="dark-heading">
-                            Different Wildlife, Different Seasons
-                        </h2>
+                            What Wildlife Dominates Each State?                        </h2>
 
                         <p class="section-intro dark-text">
-                            Wildlife groups do not follow identical seasonal
-                            patterns, with some becoming more visible during
-                            particular months.
+                            Looking beyond total observation counts reveals how the mix of birds, mammals, reptiles and amphibians differs between jurisdictions.
                         </p>
 
                     </div>
 
                 </div>
 
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Bird observations dominate most jurisdictions, especially Western Australia, Tasmania and the Northern Territory. New South Wales stands out as the most balanced state, with mammals contributing almost as much as birds.
+                    </p>
+                </div>
 
                 <div class="chart-card">
-                    <div id="month-group-heatmap"></div>
+                    <div id="state-group-share"></div>
                 </div>
 
                 <p class="chart-note dark-text">
-                    Darker cells indicate months with higher observation activity for each wildlife group.
+                    Each bar represents 100% of selected wildlife observations within a state or territory.
                 </p>
 
             </div>
@@ -354,11 +449,9 @@
         </section>
 
 
-
         <!-- =========================
              SECTION 07
         ========================== -->
-
         <section class="section-dark">
 
             <div class="section-inner">
@@ -372,41 +465,39 @@
                     <div>
 
                         <p class="section-kicker">
-                            Change
+                            Time
                         </p>
 
                         <h2>
-                            What Changed Over Five Years?
+                            Wildlife Has a Calendar
                         </h2>
 
                         <p class="section-intro">
-                            Comparing 2021 with 2025 shows which selected
-                            species became more or less frequently recorded.
+                            Observation activity changes throughout the year rather than remaining constant. Records stay relatively stable across most months before increasing sharply in spring, revealing a pronounced seasonal peak in October.
                         </p>
 
                     </div>
 
                 </div>
 
-
-                <div class="chart-card">
-                    <div id="species-slope"></div>
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Observation activity remains relatively stable through most of the year before rising sharply from September and reaching its annual peak in October at about 165.7k observations. Activity then falls through November and December, creating a distinct spring peak rather than a gradual year round increase.
+                    </p>
                 </div>
 
-                <p class="chart-note">
-                    Each line connects a species' observation count in 2021 with its count in 2025.
-                </p>
+                <div class="chart-card">
+                    <div id="monthly-trend"></div>
+                </div>
 
             </div>
 
         </section>
 
-
-
         <!-- =========================
-             SECTION 08
+            SECTION 08
         ========================== -->
-
         <section class="section-light">
 
             <div class="section-inner">
@@ -420,6 +511,214 @@
                     <div>
 
                         <p class="section-kicker dark-kicker">
+                            Seasonality
+                        </p>
+
+                        <h2 class="dark-heading">
+                            Different Wildlife, Different Seasons
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            Wildlife groups follow different seasonal patterns throughout the year. Changes in the width of each band reveal when particular groups become more prominent in observation records.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Bird observations remain the dominant component throughout most of the year, but the seasonal mix changes noticeably in spring. Mammal observations rise sharply from September and peak in October–November, temporarily narrowing the gap with birds, while reptiles and amphibians remain comparatively small contributors across all months.
+                    </p>
+                </div>
+
+                <div class="chart-card">
+                    <div id="month-group-heatmap"></div>
+                </div>
+
+                <p class="chart-note dark-text">
+                    Band thickness represents the relative monthly observation activity of each wildlife group. Wider bands indicate months when that group contributes more strongly to recorded observations.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+            SECTION 09
+        ========================== -->
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        09
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
+                            Species seasonality
+                        </p>
+
+                        <h2 class="dark-heading">
+                            When Does Each Species Appear Most?
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            Seasonal patterns become clearer at the species level.
+                            Some animals are recorded relatively consistently throughout
+                            the year, while others show stronger peaks in particular months.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Koala observations peak strongly in October and November, while Australian Magpie records remain relatively consistent throughout the year. Eastern Brown Snake shows a much stronger seasonal cycle, with high activity early in the year and again from spring into early summer, separated by a pronounced winter lull.
+                    </p>
+                </div>
+
+                <div class="chart-card">
+                    <div id="species-month-bubbles"></div>
+                </div>
+
+
+                <p class="chart-note dark-text">
+                    Bubble size shows each month relative to that species’ busiest month. Colour identifies the wildlife group; exact observation counts are available on hover.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+            SECTION 10
+        ========================== -->
+        <section class="section-dark">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number">
+                        10
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker">
+                            Change
+                        </p>
+
+                        <h2>
+                            What Changed Over Five Years?
+                        </h2>
+
+                        <p class="section-intro">
+                            Comparing 2021 with 2025 reveals which selected species increased or decreased in observation frequency. Showing percentage change makes differences easier to compare across species with very different total counts.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Change varies sharply across species. Striped Marsh Frog shows the largest increase at about +60%, while Common Wombat records the steepest decline at about −49%. Australian Magpie remains dominant overall but changes relatively little at around +4%.
+                    </p>
+                </div>
+
+                <div class="chart-card">
+                    <div id="species-slope"></div>
+                </div>
+
+                <p class="chart-note">
+                    Bars show the percentage change in observation records from 2021 to 2025. Positive values indicate an increase, while negative values indicate a decrease.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+            SECTION 11
+        ========================== -->
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        11
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
+                            Long term pattern
+                        </p>
+
+                        <h2 class="dark-heading">
+                            What Changed Between 2021 and 2025?
+                        </h2>
+
+                        <p class="section-intro dark-text">
+                            Percentage change shows where species ended up, but not what happened along the way. Annual rankings reveal whether their relative positions stayed stable or shifted between 2021 and 2025.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                       Australian Magpie, Koala and Eastern Grey Kangaroo remain fixed in the top three positions throughout 2021–2025. The only notable ranking change occurs between Eastern Blue-tongued Lizard and Common Wombat, which swap 4th and 5th place in 2023–2024 before returning to their original order in 2025.
+                </div>
+
+                <p class="interaction-hint">
+                    Click a species to trace its ranking · Double-click to reset · Hover for details
+                </p>
+
+                <div class="chart-card">
+                    <div id="species-year-trend"></div>
+                </div>
+
+
+                <p class="chart-note dark-text">
+                    Each line tracks a species’ rank position by year, with Rank 1 representing the most observed species.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+            SECTION 12
+        ========================== -->
+        <section class="section-light">
+
+            <div class="section-inner">
+
+                <div class="section-heading">
+
+                    <p class="section-number dark-number">
+                        12
+                    </p>
+
+                    <div>
+
+                        <p class="section-kicker dark-kicker">
                             Conservation
                         </p>
 
@@ -428,27 +727,53 @@
                         </h2>
 
                         <p class="section-intro dark-text">
-                            A large protected area does not always mean a large share of a
-                            jurisdiction is protected. Comparing both measures reveals very
-                            different conservation profiles across Australia.
+                            A large protected area does not always mean a large share of a jurisdiction is protected. Comparing both measures reveals very different conservation profiles across Australia.
                         </p>
 
                     </div>
 
                 </div>
 
+                <div class="insight-box">
+                    <span class="insight-label">Key insight</span>
+                    <p>
+                        Western Australia has by far the largest total protected area, but the ACT protects the greatest share of its jurisdiction despite its very small land area. Tasmania also stands out for protecting a relatively large proportion of its land, showing that total protected area and percentage protected can tell very different conservation stories.
+                    </p>
+                </div>
 
                 <div class="chart-card">
                     <div id="capad-bubble"></div>
                 </div>
 
                 <p class="chart-note dark-text">
-                    Bubble size represents the number of terrestrial protected areas recorded in CAPAD 2024.
+                    Circle size represents total protected area, while colour represents the percentage of each jurisdiction that is protected. Larger circles therefore indicate more protected land, while darker circles indicate a greater protected share.
                 </p>
             </div>
 
         </section>
 
+        <section class="conclusion-section">
+            <div class="section-inner">
+
+                <div class="conclusion-box">
+                    <p class="conclusion-label">FINAL TAKEAWAY</p>
+
+                    <h2>What Does This Mean?</h2>
+
+                    <p>
+                        Wildlife observations reflect more than where animals occur —
+                        they are also shaped by where, when and what people record.
+                    </p>
+
+                    <p>
+                        Recognising these patterns helps reveal gaps in observation
+                        coverage and encourages wildlife records to be interpreted
+                        with greater context.
+                    </p>
+                </div>
+
+            </div>
+        </section>
 
     </main>
 
@@ -458,25 +783,76 @@
          FOOTER
     ========================== -->
 
-    <footer>
-
+    <footer class="site-footer">
         <div class="footer-inner">
 
+            <section class="footer-section">
+            <h3>Data sources</h3>
+
             <p>
-                Data sources: Atlas of Living Australia and CAPAD 2024.
+                <a href="https://www.ala.org.au/" target="_blank" rel="noopener noreferrer">
+                https://www.ala.org.au/
+                </a>
+                (Atlas of Living Australia)
             </p>
 
             <p>
-                By Bernice Loo 
+                <a href="https://www.dcceew.gov.au/environment/land/nrs/science/capad/2024" target="_blank" rel="noopener noreferrer">
+                https://www.dcceew.gov.au/environment/land/nrs/science/capad/2024
+                </a>
+                (Collaborative Australian Protected Areas Database, CAPAD 2024)
             </p>
+            </section>
+
+
+            <section class="footer-section">
+            <h3>Authorship</h3>
+
+            <p>Visualisation by Bernice Loo</p>
+            <p>November 2026</p>
+            </section>
+
+
+            <section class="footer-section">
+            <h3>AI Acknowledgement</h3>
+
+            <p>
+                OpenAI ChatGPT was used to assist with coding, data preparation and
+                visualisation refinement.
+                All outputs and data used in the final visualisation were reviewed and
+                cross checked by the author.
+            </p>
+            </section>
+
+
+            <section class="footer-section">
+            <h3>Photo credits</h3>
+
+            <p>
+                Australian Magpie:
+                <a href="https://connectingcountry.s3.ap-southeast-2.amazonaws.com/press/wp-content/uploads/2022/02/24100300/black-backed-magpie_damian-kelly-1536x1495.jpg">
+                image source
+                </a>
+            </p>
+
+            <p>
+                Koala:
+                <a href="https://cdn.britannica.com/26/162626-050-3534626F/Koala.jpg">
+                image source
+                </a>
+            </p>
+
+            <p>
+                Eastern Grey Kangaroo:
+                <a href="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Macropus_giganteus_-_Brunkerville.jpg/500px-Macropus_giganteus_-_Brunkerville.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail">
+                image source
+                </a>
+            </p>
+            </section>
 
         </div>
-
     </footer>
-
-
-
-    <!-- Main JavaScript -->
+    
     <script src="js/main.js"></script>
 
 </body>

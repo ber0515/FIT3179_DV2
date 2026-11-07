@@ -1,0 +1,190 @@
+{
+  "width": 650,
+  "height": 360,
+  "background": null,
+  "data": {
+    "url": "data/year_species_counts.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.common_name == 'Australian Magpie' || datum.common_name == 'Koala' || datum.common_name == 'Eastern Grey Kangaroo' || datum.common_name == 'Eastern Blue-tongued Lizard' || datum.common_name == 'Common Wombat'"
+    },
+    {
+      "calculate": "toNumber(datum.observations)",
+      "as": "obs_num"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "obs_num",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "year"
+      ]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "sort": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "title": "Year",
+      "axis": {
+        "labelAngle": 0,
+        "labelColor": "#27302A",
+        "titleColor": "#27302A",
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank",
+      "scale": {
+        "domain": [
+          5.5,
+          0.5
+        ]
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "labelExpr": "'Rank ' + datum.value",
+        "labelColor": "#27302A",
+        "titleColor": "#27302A",
+        "grid": true,
+        "gridColor": "#DDD5C4"
+      }
+    },
+    "color": {
+      "field": "common_name",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Australian Magpie",
+          "Koala",
+          "Eastern Grey Kangaroo",
+          "Eastern Blue-tongued Lizard",
+          "Common Wombat"
+        ],
+        "range": [
+          "#4E79A7",
+          "#D19449",
+          "#63B3B0",
+          "#E45756",
+          "#65A35C"
+        ]
+      },
+      "legend": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 4
+      },
+      "encoding": {
+        "detail": {
+          "field": "common_name"
+        },
+        "opacity": {
+          "condition": {
+            "param": "species_select",
+            "value": 1
+          },
+          "value": 0.15
+        },
+        "tooltip": [
+          {
+            "field": "common_name",
+            "type": "nominal",
+            "title": "Species"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank"
+          },
+          {
+            "field": "obs_num",
+            "type": "quantitative",
+            "title": "Observations",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "species_select",
+          "select": {
+            "type": "point",
+            "fields": [
+              "common_name"
+            ],
+            "on": "click",
+            "clear": "dblclick"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100,
+        "stroke": "#F4F1E8",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "common_name"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

@@ -1,7 +1,6 @@
 import requests
 import csv
 import os
-import urllib.parse
 
 OUT_DIR = "data"
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -82,7 +81,6 @@ def get_facet(species, facet, limit=1000):
 
     return data[0].get("fieldResult", [])
 
-
 # 1. species totals
 species_rows = []
 
@@ -161,8 +159,40 @@ with open(f"{OUT_DIR}/month_group_counts.csv", "w", newline="", encoding="utf-8"
     for (month, group), count in sorted(month_group_counts.items()):
         w.writerow([month, group, count])
 
+# 5. month x species
+with open(
+    f"{OUT_DIR}/species_month_counts.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as f:
 
-# 5. year x species
+    w = csv.writer(f)
+
+    w.writerow([
+        "month",
+        "common_name",
+        "group",
+        "observations"
+    ])
+
+    for sp in SPECIES:
+
+        rows = get_facet(sp, "month", 100)
+
+        for x in rows:
+
+            month = x.get("label", "")
+            count = x.get("count", 0)
+
+            w.writerow([
+                month,
+                COMMON[sp],
+                GROUPS[sp],
+                count
+            ])
+
+# 6. year x species
 with open(f"{OUT_DIR}/year_species_counts.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["year", "common_name", "group", "observations"])
@@ -183,7 +213,7 @@ with open(f"{OUT_DIR}/year_species_counts.csv", "w", newline="", encoding="utf-8
                 ])
 
 
-# 6. group totals
+# 7. group totals
 group_totals = {}
 
 for _, _, group, total in species_rows:
@@ -196,5 +226,5 @@ with open(f"{OUT_DIR}/observations_by_group.csv", "w", newline="", encoding="utf
     for group, count in sorted(group_totals.items()):
         w.writerow([group, count])
 
-
 print("Done.")
+

@@ -1,20 +1,15 @@
 {
-
   "width": 620,
   "height": 360,
-
-  "background": "#F4F1E8",
-
+  "background": null,
   "data": {
     "url": "data/observations_by_species.csv"
   },
-
   "transform": [
     {
       "filter": "datum.observations > 0"
     }
   ],
-
   "encoding": {
     "y": {
       "field": "common_name",
@@ -27,7 +22,6 @@
         "labelLimit": 220
       }
     },
-
     "x": {
       "field": "observations",
       "type": "quantitative",
@@ -40,26 +34,22 @@
       }
     }
   },
-
   "layer": [
     {
       "mark": {
         "type": "rule",
-        "strokeWidth": 2,
+        "strokeWidth": 3,
         "color": "#A9C0A4"
       },
-
       "encoding": {
         "x": {
           "datum": 0
         },
-
         "x2": {
           "field": "observations"
         }
       }
     },
-
     {
       "mark": {
         "type": "point",
@@ -67,7 +57,6 @@
         "size": 150,
         "color": "#2F5D46"
       },
-
       "encoding": {
         "tooltip": [
           {
@@ -89,7 +78,6 @@
         ]
       }
     },
-
     {
       "mark": {
         "type": "text",
@@ -99,7 +87,6 @@
         "fontSize": 11,
         "color": "#27302A"
       },
-
       "encoding": {
         "text": {
           "field": "observations",
@@ -109,7 +96,6 @@
       }
     }
   ],
-
   "config": {
     "view": {
       "stroke": null

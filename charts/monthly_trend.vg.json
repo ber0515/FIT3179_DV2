@@ -1,42 +1,29 @@
 {
-
   "width": 620,
   "height": 320,
-
-  "background": "#F4F1E8",
-
+  "background": null,
   "data": {
     "url": "data/month_group_counts.csv"
   },
-
   "transform": [
     {
-        "aggregate": [
+      "aggregate": [
         {
-            "op": "sum",
-            "field": "observations",
-            "as": "total_observations"
+          "op": "sum",
+          "field": "observations",
+          "as": "total_observations"
         }
-        ],
-        "groupby": ["month"]
+      ],
+      "groupby": [
+        "month"
+      ]
     }
-    ],
-
-  "mark": {
-    "type": "line",
-    "point": {
-      "filled": true,
-      "size": 80
-    },
-    "strokeWidth": 3,
-    "color": "#2F5D46"
-  },
-
+  ],
   "encoding": {
     "x": {
-    "field": "month",
-    "type": "ordinal",
-    "sort": [
+      "field": "month",
+      "type": "ordinal",
+      "sort": [
         "January",
         "February",
         "March",
@@ -49,17 +36,16 @@
         "October",
         "November",
         "December"
-    ],
-    "title": "Month",
-    "axis": {
+      ],
+      "title": "Month",
+      "axis": {
         "labelExpr": "substring(datum.label, 0, 3)",
         "labelAngle": 0,
         "labelColor": "#27302A",
         "titleColor": "#27302A",
         "titlePadding": 10
-    }
+      }
     },
-
     "y": {
       "field": "total_observations",
       "type": "quantitative",
@@ -70,23 +56,73 @@
         "labelColor": "#5F6F63",
         "gridColor": "#DDD5C4"
       }
-    },
-
-    "tooltip": [
-      {
-        "field": "month_name",
-        "type": "nominal",
-        "title": "Month"
-      },
-      {
-        "field": "total_observations",
-        "type": "quantitative",
-        "title": "Observations",
-        "format": ","
-      }
-    ]
+    }
   },
-
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "size": 80
+        },
+        "strokeWidth": 3,
+        "color": "#2F5D46"
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "month",
+            "type": "ordinal",
+            "title": "Month"
+          },
+          {
+            "field": "total_observations",
+            "type": "quantitative",
+            "title": "Observations",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.month === 'October'"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 180,
+        "color": "#E76F51",
+        "stroke": "#F4F1E8",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.month === 'October'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 12,
+        "dy": -10,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "#27302A"
+      },
+      "encoding": {
+        "text": {
+          "value": "October peak: 165.7k"
+        }
+      }
+    }
+  ],
   "config": {
     "view": {
       "stroke": null

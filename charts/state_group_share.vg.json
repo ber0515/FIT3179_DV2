@@ -1,0 +1,102 @@
+{
+  "width": 620,
+  "height": 340,
+  "background": null,
+  "data": {
+    "url": "data/state_group_counts.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "New South Wales",
+        "Victoria",
+        "Queensland",
+        "Australian Capital Territory",
+        "South Australia",
+        "Western Australia",
+        "Tasmania",
+        "Northern Territory"
+      ],
+      "axis": {
+        "labelColor": "#27302A",
+        "labelFontSize": 12,
+        "labelLimit": 180
+      }
+    },
+    "x": {
+      "field": "observations",
+      "type": "quantitative",
+      "aggregate": "sum",
+      "stack": "normalize",
+      "title": "Share of observations",
+      "axis": {
+        "format": ".0%",
+        "labelColor": "#5F6F63",
+        "titleColor": "#27302A",
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Wildlife group",
+      "scale": {
+        "domain": [
+          "Bird",
+          "Mammal",
+          "Reptile",
+          "Amphibian"
+        ],
+        "range": [
+          "#4F7EA8",
+          "#D96C4F",
+          "#718355",
+          "#4F8A7B"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "labelColor": "#27302A",
+        "titleColor": "#27302A"
+      }
+    },
+    "order": {
+      "field": "group",
+      "sort": [
+        "Bird",
+        "Mammal",
+        "Reptile",
+        "Amphibian"
+      ]
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "group",
+        "type": "nominal",
+        "title": "Wildlife group"
+      },
+      {
+        "field": "observations",
+        "type": "quantitative",
+        "title": "Observations",
+        "format": ","
+      }
+    ]
+  },
+  "mark": {
+    "type": "bar"
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

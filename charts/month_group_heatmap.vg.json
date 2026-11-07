@@ -1,23 +1,15 @@
 {
   "width": 620,
-  "height": 250,
-  "background": "#F4F1E8",
-
+  "height": 300,
+  "background": null,
   "data": {
     "url": "data/month_group_counts.csv"
   },
-
-  "mark": {
-    "type": "rect",
-    "stroke": "#F4F1E8",
-    "strokeWidth": 2
-  },
-
   "encoding": {
-   "x": {
-    "field": "month",
-    "type": "ordinal",
-    "sort": [
+    "x": {
+      "field": "month",
+      "type": "ordinal",
+      "sort": [
         "January",
         "February",
         "March",
@@ -30,49 +22,52 @@
         "October",
         "November",
         "December"
-    ],
-    "title": "Month",
-    "axis": {
+      ],
+      "title": "Month",
+      "axis": {
         "labelExpr": "substring(datum.label, 0, 3)",
         "labelAngle": 0,
         "labelColor": "#27302A",
-        "titleColor": "#27302A"
-    }
-    },
-
-    "y": {
-      "field": "group",
-      "type": "nominal",
-      "sort": ["Bird", "Mammal", "Reptile", "Amphibian"],
-      "title": null,
-      "axis": {
-        "labelColor": "#27302A",
-        "labelFontSize": 12
+        "titleColor": "#27302A",
+        "titleFontWeight": "bold",
+        "grid": false
       }
     },
-
-    "color": {
+    "y": {
       "field": "observations",
       "type": "quantitative",
-      "title": "Observations",
+      "stack": "center",
+      "axis": null
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Wildlife group",
       "scale": {
-        "type": "sqrt",
+        "domain": [
+          "Bird",
+          "Mammal",
+          "Reptile",
+          "Amphibian"
+        ],
         "range": [
-          "#E1E9DF",
-          "#B8CAB4",
-          "#88A884",
-          "#527858",
-          "#18392B"
+          "#4F7EA8",
+          "#D96C4F",
+          "#718355",
+          "#4F8A7B"
         ]
       },
       "legend": {
         "orient": "right",
-        "format": "~s",
         "titleColor": "#27302A",
-        "labelColor": "#27302A"
+        "labelColor": "#27302A",
+        "titleFontWeight": "bold"
       }
     },
-
+    "order": {
+      "field": "group",
+      "sort": "ascending"
+    },
     "tooltip": [
       {
         "field": "group",
@@ -92,7 +87,12 @@
       }
     ]
   },
-
+  "mark": {
+    "type": "area",
+    "opacity": 0.9,
+    "stroke": "#F4F1E8",
+    "strokeWidth": 1
+  },
   "config": {
     "view": {
       "stroke": null

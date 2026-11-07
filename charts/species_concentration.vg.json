@@ -1,0 +1,202 @@
+{
+  "width": 620,
+  "height": 360,
+  "background": null,
+  "data": {
+    "url": "data/observations_by_species.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.observations > 0"
+    },
+    {
+      "calculate": "toNumber(datum.observations)",
+      "as": "obs"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "obs",
+          "as": "total_observations"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "obs",
+          "as": "cumulative_observations"
+        }
+      ],
+      "sort": [
+        {
+          "field": "obs",
+          "order": "descending"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ]
+    },
+    {
+      "calculate": "datum.cumulative_observations / datum.total_observations",
+      "as": "cumulative_share"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "common_name",
+      "type": "nominal",
+      "sort": [
+        "Australian Magpie",
+        "Koala",
+        "Eastern Grey Kangaroo",
+        "Eastern Blue-tongued Lizard",
+        "Common Wombat",
+        "Lace Monitor",
+        "Common Eastern Froglet",
+        "Striped Marsh Frog",
+        "Eastern Brown Snake"
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": -35,
+        "labelColor": "#27302A",
+        "labelLimit": 150
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#3E6B89",
+        "cornerRadiusTopLeft": 3,
+        "cornerRadiusTopRight": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "obs",
+          "type": "quantitative",
+          "title": "Observations",
+          "axis": {
+            "format": "~s",
+            "labelColor": "#5F6F63",
+            "titleColor": "#27302A",
+            "gridColor": "#DDD5C4"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "common_name",
+            "type": "nominal",
+            "title": "Species"
+          },
+          {
+            "field": "obs",
+            "type": "quantitative",
+            "title": "Observations",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#C58A45",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 65,
+          "color": "#4E79A7"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "cumulative_share",
+          "type": "quantitative",
+          "title": "Cumulative share",
+          "axis": {
+            "orient": "right",
+            "format": ".0%",
+            "labelColor": "#C58A45",
+            "titleColor": "#C58A45",
+            "grid": false
+          },
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "common_name",
+            "type": "nominal",
+            "title": "Species"
+          },
+          {
+            "field": "cumulative_share",
+            "type": "quantitative",
+            "title": "Cumulative share",
+            "format": ".1%"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.common_name == 'Koala'"
+        },
+        {
+          "calculate": "'Top 2 species account for\\nclose to 90% of records'",
+          "as": "annotation"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 18,
+        "dy": 18,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "color": "#27302A"
+      },
+      "encoding": {
+        "y": {
+          "field": "cumulative_share",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "annotation"
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

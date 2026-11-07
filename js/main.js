@@ -15,15 +15,6 @@ vegaEmbed(
     }
 ).catch(console.error);
 
-
-vegaEmbed(
-    "#group-donut",
-    "charts/group_donut.vg.json",
-    {
-        actions: false
-    }
-).catch(console.error);
-
 vegaEmbed(
     "#state-group-heatmap",
     "charts/state_group_heatmap.vg.json",
@@ -59,6 +50,46 @@ vegaEmbed(
 vegaEmbed(
     "#capad-bubble",
     "charts/capad_bubble.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#species-year-trend",
+    "charts/species_year_trend.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#state-group-share",
+    "charts/state_group_share.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#species-month-bubbles",
+    "charts/species_month_bubbles.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#species-concentration",
+    "charts/species_concentration.vg.json",
+    {
+        actions: false
+    }
+).catch(console.error);
+
+vegaEmbed(
+    "#observation-point-map",
+    "charts/observation_point_map.vg.json",
     {
         actions: false
     }

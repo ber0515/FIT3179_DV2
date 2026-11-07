@@ -1,75 +1,113 @@
 {
-  
-  "width": 620,
-  "height": 380,
-
-  "background": "#F4F1E8",
-
-  "data": {
-    "url": "data/capad_jurisdiction.csv"
+  "width": 600,
+  "height": 450,
+  "background": null,
+  "projection": {
+    "type": "mercator",
+    "scale": 650,
+    "center": [
+      134,
+      -28
+    ]
   },
-
-  "transform": [
-    {
-      "calculate": "datum.protected_area_ha / 1000000",
-      "as": "protected_area_mha"
-    }
-  ],
-
   "layer": [
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/alwaysblazing/Australia-State-TopoJson-MapChart/master/au-states-topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "austates"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#D9D5C9",
+        "stroke": "#F4F1E8",
+        "strokeWidth": 1.5
+      }
+    },
+    {
+      "data": {
+        "url": "data/capad_jurisdiction.csv"
+      },
+      "transform": [
+        {
+          "calculate": "datum.protected_area_ha / 1000000",
+          "as": "protected_area_mha"
+        },
+        {
+          "calculate": "datum.jurisdiction == 'WA' ? 121 : datum.jurisdiction == 'NT' ? 133 : datum.jurisdiction == 'SA' ? 135 : datum.jurisdiction == 'QLD' ? 145 : datum.jurisdiction == 'NSW' ? 151 : datum.jurisdiction == 'VIC' ? 145 : datum.jurisdiction == 'TAS' ? 147 : 149",
+          "as": "longitude"
+        },
+        {
+          "calculate": "datum.jurisdiction == 'WA' ? -25 : datum.jurisdiction == 'NT' ? -19 : datum.jurisdiction == 'SA' ? -30 : datum.jurisdiction == 'QLD' ? -23 : datum.jurisdiction == 'NSW' ? -32 : datum.jurisdiction == 'VIC' ? -37 : datum.jurisdiction == 'TAS' ? -42 : -35.3",
+          "as": "latitude"
+        }
+      ],
       "mark": {
         "type": "circle",
-        "opacity": 0.8,
+        "opacity": 0.82,
         "stroke": "#F4F1E8",
         "strokeWidth": 1.5
       },
-
       "encoding": {
-        "x": {
-          "field": "percent_protected",
-          "type": "quantitative",
-          "title": "Jurisdiction protected (%)",
-          "scale": {
-            "zero": true
-          },
-          "axis": {
-            "labelColor": "#27302A",
-            "titleColor": "#27302A",
-            "gridColor": "#DDD5C4"
-          }
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
         },
-
-        "y": {
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
           "field": "protected_area_mha",
           "type": "quantitative",
           "title": "Protected area (million ha)",
-          "axis": {
-            "labelColor": "#27302A",
-            "titleColor": "#27302A",
-            "gridColor": "#DDD5C4"
-          }
-        },
-
-        "size": {
-          "field": "protected_areas",
-          "type": "quantitative",
-          "title": "Number of protected areas",
           "scale": {
-            "range": [150, 1700]
+            "type": "sqrt",
+            "range": [
+              120,
+              3200
+            ]
           },
           "legend": {
-            "title": "Number of protected areas",
-            "values": [1000, 2000, 3000, 4000],
+            "orient": "right",
+            "title": "Protected area",
+            "values": [
+              5,
+              20,
+              40,
+              80
+            ],
+            "labelExpr": "datum.value + 'm ha'",
             "titleColor": "#27302A",
             "labelColor": "#27302A"
-            }
+          }
         },
-
         "color": {
-          "value": "#2F5D46"
+          "field": "percent_protected",
+          "type": "quantitative",
+          "title": "Land protected (%)",
+          "scale": {
+            "domain": [
+              0,
+              60
+            ],
+            "range": [
+              "#DCE7DA",
+              "#AFC6A8",
+              "#779A76",
+              "#456D52",
+              "#18392B"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "titleColor": "#27302A",
+            "labelColor": "#27302A",
+            "format": ".0f"
+          }
         },
-
         "tooltip": [
           {
             "field": "jurisdiction",
@@ -77,55 +115,62 @@
             "title": "Jurisdiction"
           },
           {
-            "field": "percent_protected",
+            "field": "protected_area_mha",
             "type": "quantitative",
-            "title": "Protected",
+            "title": "Protected area",
             "format": ".1f"
           },
           {
-            "field": "protected_area_mha",
+            "field": "percent_protected",
             "type": "quantitative",
-            "title": "Protected area (million ha)",
+            "title": "Jurisdiction protected",
             "format": ".1f"
           },
           {
             "field": "protected_areas",
             "type": "quantitative",
-            "title": "Protected areas",
+            "title": "Number of protected areas",
             "format": ","
           }
         ]
       }
     },
-
     {
+      "data": {
+        "url": "data/capad_jurisdiction.csv"
+      },
+      "transform": [
+        {
+          "calculate": "datum.jurisdiction == 'WA' ? 121 : datum.jurisdiction == 'NT' ? 133 : datum.jurisdiction == 'SA' ? 135 : datum.jurisdiction == 'QLD' ? 145 : datum.jurisdiction == 'NSW' ? 151 : datum.jurisdiction == 'VIC' ? 145 : datum.jurisdiction == 'TAS' ? 147 : 149",
+          "as": "longitude"
+        },
+        {
+          "calculate": "datum.jurisdiction == 'WA' ? -25 : datum.jurisdiction == 'NT' ? -19 : datum.jurisdiction == 'SA' ? -30 : datum.jurisdiction == 'QLD' ? -23 : datum.jurisdiction == 'NSW' ? -32 : datum.jurisdiction == 'VIC' ? -37 : datum.jurisdiction == 'TAS' ? -42 : -35.3",
+          "as": "latitude"
+        }
+      ],
       "mark": {
         "type": "text",
-        "dx": 10,
-        "dy": -8,
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": "bold",
         "color": "#27302A"
       },
-
       "encoding": {
-        "x": {
-          "field": "percent_protected",
+        "longitude": {
+          "field": "longitude",
           "type": "quantitative"
         },
-
-        "y": {
-          "field": "protected_area_mha",
+        "latitude": {
+          "field": "latitude",
           "type": "quantitative"
         },
-
         "text": {
-          "field": "jurisdiction"
+          "field": "jurisdiction",
+          "type": "nominal"
         }
       }
     }
   ],
-
   "config": {
     "view": {
       "stroke": null

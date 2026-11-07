@@ -1,0 +1,149 @@
+{
+  "width": 620,
+  "height": 440,
+  "background": null,
+  "data": {
+    "url": "data/species_month_counts.csv"
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "observations",
+          "as": "species_max"
+        }
+      ],
+      "groupby": [
+        "common_name"
+      ]
+    },
+    {
+      "calculate": "datum.observations / datum.species_max",
+      "as": "relative_activity"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "month",
+      "type": "ordinal",
+      "sort": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "title": "Month",
+      "axis": {
+        "labelExpr": "substring(datum.label, 0, 3)",
+        "labelAngle": 0,
+        "labelColor": "#27302A",
+        "titleColor": "#27302A"
+      }
+    },
+    "y": {
+      "field": "common_name",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "observations",
+        "op": "sum",
+        "order": "descending"
+      },
+      "axis": {
+        "labelColor": "#27302A",
+        "labelFontSize": 11,
+        "labelLimit": 180
+      }
+    },
+    "size": {
+      "field": "relative_activity",
+      "type": "quantitative",
+      "title": "Relative monthly activity",
+      "scale": {
+        "domain": [
+          0,
+          1
+        ],
+        "range": [
+          30,
+          420
+        ]
+      },
+      "legend": {
+        "values": [
+          0.5,
+          1
+        ],
+        "labelExpr": "datum.value * 100 + '%'"
+      }
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Wildlife group",
+      "scale": {
+        "domain": [
+          "Bird",
+          "Mammal",
+          "Reptile",
+          "Amphibian"
+        ],
+        "range": [
+          "#4F7EA8",
+          "#D96C4F",
+          "#718355",
+          "#4F8A7B"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "titleColor": "#27302A",
+        "labelColor": "#27302A"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "common_name",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "field": "month",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      {
+        "field": "observations",
+        "type": "quantitative",
+        "title": "Observations",
+        "format": ","
+      },
+      {
+        "field": "relative_activity",
+        "type": "quantitative",
+        "title": "Relative to species peak",
+        "format": ".0%"
+      }
+    ]
+  },
+  "mark": {
+    "type": "circle",
+    "opacity": 0.82,
+    "stroke": "#F4F1E8",
+    "strokeWidth": 1
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
